@@ -128,24 +128,26 @@ A Streamlit application provides:
 ```bash
 Movie_Recommendation_System/
 │
-├── data/
+├── DataSet/
 │   ├── movies.csv
-│   └── processed_data.csv
+│  
 │
-├── model/
-│   ├── tfidf_vectorizer.pkl
-│   └── similarity_matrix.pkl
+├── Models/
+│   ├── df.pkl
+│   └── indices.pkl
+    └── tfidf_matrix.pkl
+    └── tfidf.pkl
 │
-├── backend/
+├── Backend/
 │   ├── main.py
-│   └── requirements.txt
+│   
 │
-├── frontend/
+├── Frontend/
 │   ├── app.py
-│   └── requirements.txt
+│  
 │
-├── notebooks/
-│   └── movie_recommendation.ipynb
+├── Notebooks/
+│   └── movies.ipynb
 │
 └── README.md
 ```
@@ -204,7 +206,7 @@ TMDB_API_KEY=your_api_key_here
 ##  Run Backend
 
 ```bash
-uvicorn main:app --reload
+uvicorn Backend.main:app --reload
 ```
 
 Backend will be available at:
@@ -224,7 +226,7 @@ http://127.0.0.1:8000/docs
 ##  Run Frontend
 
 ```bash
-streamlit run app.py
+streamlit run Frontend/app.py
 ```
 
 Frontend will open in your browser automatically.
@@ -243,14 +245,63 @@ Frontend will open in your browser automatically.
 
 ---
 
-##  Screenshots
+##  Key Learnings
 
-Add screenshots of:
+Through this project, I gained practical experience in building and deploying an end-to-end Machine Learning application.
 
-* Home Page
-* Recommendation Results
-* FastAPI Swagger Documentation
-* Deployment Screens
+### Machine Learning
+
+* Understanding content-based recommendation systems.
+* Building recommendation engines using similarity metrics.
+* Working with large-scale movie datasets.
+* Model serialization using Pickle.
+
+### Natural Language Processing (NLP)
+
+* Text preprocessing and cleaning.
+* Stopword removal and punctuation handling.
+* Feature engineering using movie metadata.
+* Converting textual data into numerical representations using TF-IDF.
+
+### Mathematics Behind Recommendations
+
+* Understanding vector space representations.
+* Implementing and applying Cosine Similarity.
+* Measuring semantic similarity between documents.
+
+### Backend Development
+
+* Building REST APIs using FastAPI.
+* API routing and request handling.
+* Model serving for machine learning applications.
+* Interactive API documentation using Swagger UI.
+
+### Frontend Development
+
+* Creating interactive user interfaces with Streamlit.
+* Integrating backend APIs with frontend applications.
+* Displaying dynamic movie recommendations and metadata.
+
+### Deployment & MLOps
+
+* Deploying machine learning applications to production.
+* Hosting backend services on Render.
+* Deploying frontend applications on Streamlit Cloud.
+* Managing environment variables and API keys securely.
+
+### External API Integration
+
+* Consuming third-party APIs (TMDB API).
+* Fetching real-time movie posters and metadata.
+* Handling API responses and data transformation.
+
+### Software Engineering Skills
+
+* Project structuring and modular development.
+* Version control using Git and GitHub.
+* Debugging and troubleshooting production issues.
+* Building scalable and maintainable applications.
+
 
 ---
 

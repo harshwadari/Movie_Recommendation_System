@@ -1,13 +1,19 @@
+import os
+from typing import Optional
+
 import requests
 import streamlit as st
 
 # =============================
 # CONFIG
 # =============================
-API_BASE = "https://movie-rec-466x.onrender.com" or "http://127.0.0.1:8000"
+# Use RENDER_API env var to override the backend URL (e.g. for local development).
+# The `or` operator alone would always resolve to the first non-empty string,
+# so we use os.getenv with a proper fallback instead.
+API_BASE = os.getenv("RENDER_API", "https://movie-rec-466x.onrender.com")
 TMDB_IMG = "https://image.tmdb.org/t/p/w500"
 
-st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="wide")
+st.set_page_config(page_title="Movie Recommendation System", page_icon="🎬", layout="wide")
 
 # =============================
 # STYLES (minimal modern)
@@ -64,7 +70,7 @@ def goto_details(tmdb_id: int):
 # API HELPERS
 # =============================
 @st.cache_data(ttl=30)  # short cache for autocomplete
-def api_get_json(path: str, params: dict | None = None):
+def api_get_json(path: str, params: Optional[dict] = None):
     try:
         r = requests.get(f"{API_BASE}{path}", params=params, timeout=25)
         if r.status_code >= 400:
