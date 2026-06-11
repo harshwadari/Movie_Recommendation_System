@@ -1,0 +1,4 @@
+# Streamlit Cloud requirements — minimal, only what Frontend/app.py needs
+streamlit==1.40.2
+requests==2.32.3
+Pillow==11.2.1
