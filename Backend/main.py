@@ -1,5 +1,6 @@
 import os
 import pickle
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -24,10 +25,18 @@ TMDB_IMG_BACKDROP = "https://image.tmdb.org/t/p/w1280"
 # =========================
 # FASTAPI APP
 # =========================
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Load ML models on startup."""
+    _load_pickles()
+    yield
+
+
 app = FastAPI(
     title="Movie Recommendation API",
     description="TF-IDF + TMDB powered movie recommendation system",
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -170,8 +179,8 @@ async def tmdb_get(path: str, params: Optional[Dict] = None) -> Optional[dict]:
 # =========================
 # STARTUP: LOAD PICKLES
 # =========================
-@app.on_event("startup")
-def load_pickles():
+def _load_pickles():
+    """Load all ML model pickle files into global state."""
     global df, indices_obj, tfidf_matrix, tfidf_obj, TITLE_TO_IDX
 
     print("\n========== LOADING MODELS ==========")

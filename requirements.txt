@@ -1,11 +1,16 @@
-fastapi==0.111.0
-uvicorn==0.30.1
+# Web framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# Utilities
 python-dotenv==1.0.1
 httpx==0.27.0
 
-pandas==2.2.2
+# Data / ML — pinned for Python 3.11 wheel availability
+pandas==2.2.3
 numpy==1.26.4
 scipy==1.13.1
-scikit-learn==1.5.1
+scikit-learn==1.5.2
 
-streamlit==1.36.0
+# Frontend (if served via same process)
+streamlit==1.40.2
